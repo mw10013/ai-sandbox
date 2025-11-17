@@ -224,7 +224,7 @@ export default function RouteComponent({
           </svg>
         </div>
         <h1 className="text-2xl leading-tight font-semibold text-wrap lg:text-3xl">
-          Get started with CRRS.
+          Get started with AIS.
         </h1>
         <p className="text-muted-foreground text-2xl leading-normal font-medium text-wrap sm:max-w-[80%] lg:text-3xl">
           Build with{" "}

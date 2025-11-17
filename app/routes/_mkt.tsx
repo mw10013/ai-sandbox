@@ -48,7 +48,7 @@ function Header() {
             className="flex items-center gap-1"
           >
             <AppLogoIcon className="size-6 fill-current" />
-            <span className="text-xl font-extrabold">CRRS</span>
+            <span className="text-xl font-extrabold">AIS</span>
             <span className="bg-primary relative top-1 size-1.5" />
           </Oui.Link>
           <div className="hidden items-center gap-6 md:flex">
@@ -136,7 +136,7 @@ export function Footer() {
             className="flex items-center gap-1"
           >
             <AppLogoIcon className="size-6 fill-current" />
-            <span className="text-xl font-extrabold">CRRS</span>
+            <span className="text-xl font-extrabold">AIS</span>
             <span className="bg-primary relative top-1 size-1.5" />
           </Oui.Link>
           <p className="text-muted-foreground text-sm">
@@ -179,7 +179,7 @@ export function Footer() {
       </div>
       <div className="border-border/40 flex flex-col items-center justify-between gap-4 border-t border-dashed pt-8 sm:flex-row">
         <p className="text-muted-foreground text-sm">
-          © {/* */}2025{/* */} CRRS. Built with ♥ by{" "}
+          © {/* */}2025{/* */} AIS. Built with ♥ by{" "}
           <Oui.Link
             href="https://github.com/mw10013"
             target="_blank"

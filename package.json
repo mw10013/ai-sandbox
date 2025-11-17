@@ -1,5 +1,5 @@
 {
-  "name": "crrs",
+  "name": "ais",
   "private": true,
   "type": "module",
   "scripts": {
@@ -20,17 +20,17 @@
     "clean:node": "rm -rf node_modules test/*/node_modules",
     "clean:wrangler": "rm -rf .wrangler",
     "clean:etc": "rm -rf .react-router build dist",
-    "tail:PRODUCTION": "wrangler tail crrs",
+    "tail:PRODUCTION": "wrangler tail ais",
     "d1:migrate:list": "wrangler d1 migrations list d1-local --local",
     "d1:migrate:apply": "wrangler d1 migrations apply d1-local --local",
-    "d1:migrate:list:int": "wrangler d1 migrations list crrs-d1-int --env int --remote",
-    "d1:migrate:apply:int": "wrangler d1 migrations apply crrs-d1-int --env int --remote",
-    "d1:migrate:list:PRODUCTION": "wrangler d1 migrations list crrs-d1-production --env production --remote",
-    "d1:migrate:apply:PRODUCTION": "wrangler d1 migrations apply crrs-d1-production --env production --remote",
+    "d1:migrate:list:int": "wrangler d1 migrations list ais-d1-int --env int --remote",
+    "d1:migrate:apply:int": "wrangler d1 migrations apply ais-d1-int --env int --remote",
+    "d1:migrate:list:PRODUCTION": "wrangler d1 migrations list ais-d1-production --env production --remote",
+    "d1:migrate:apply:PRODUCTION": "wrangler d1 migrations apply ais-d1-production --env production --remote",
     "d1:reset": "node scripts/d1-reset.ts",
     "d1:reset:int": "node scripts/d1-reset.ts --env int",
     "d1:reset:PRODUCTION": "node scripts/d1-reset.ts --env production",
-    "stripe:listen": "stripe listen --project-name=crrs-int --load-from-webhooks-api --forward-to localhost:5173/",
+    "stripe:listen": "stripe listen --project-name=ais-int --load-from-webhooks-api --forward-to localhost:5173/",
     "script": "node --env-file=.env"
   },
   "dependencies": {

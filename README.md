@@ -10,7 +10,7 @@
   Cloudflare • React Router • Better Auth • Stripe • Oui (React Aria Components with Shadcn characteristics) • SES
   </p>
   <p>
-    <a href="https://crrs.devxo.workers.dev/">Demo</a>
+    <a href="https://ais.devxo.workers.dev/">Demo</a>
   </p>
 
 </div>
@@ -63,7 +63,7 @@
 ### Stripe
 
 - Install the [Stripe CLI](https://stripe.com/docs/stripe-cli).
-- Go to stripe and create a sandbox for testing named `crrs-int`
+- Go to stripe and create a sandbox for testing named `ais-int`
   - Remember secret key for `STRIPE_SECRET_KEY` environment variable.
 - Create a stripe webhook
   - Endpoint URL: `https://dummy.com/api/auth/stripe/webhook` (This is dummy placeholder for local dev)
@@ -79,7 +79,7 @@
 ```
 pnpm i
 pnpm d1:reset
-stripe login --project-name=crrs-int
+stripe login --project-name=ais-int
 pnpm stripe:listen
 # copy webhook signing secret to STRIPE_WEBHOOK_SECRET in .env
 pnpm dev
@@ -112,17 +112,17 @@ pnpm test:e2e
 
 ## Deploy
 
-- pnpm exec wrangler kv namespace create crrs-kv-production
+- pnpm exec wrangler kv namespace create ais-kv-production
 - Update wrangler.jsonc production kv_namespaces and queues
 - pnpm d1:reset:PRODUCTION
 - pnpm deploy:PRODUCTION
 - pnpm exec wrangler secret put SECRET --env production
-- Workers & Pages Settings: crrs
+- Workers & Pages Settings: ais
   - Git repository: connect to git repo
   - Build configuration
     - Build command: CLOUDFLARE_ENV=production pnpm build
     - Deploy command: pnpm exec wrangler deploy
-- Storage & databases: crrs-d1-production: Settings
+- Storage & databases: ais-d1-production: Settings
   - Enable read replication
 
 ## Oui

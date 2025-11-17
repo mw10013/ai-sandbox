@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "crrs-local",
+  "name": "ais-local",
   "main": "./workers/app.ts",
   "compatibility_date": "2025-07-12",
   "compatibility_flags": ["nodejs_compat"],
@@ -45,12 +45,12 @@
   ],
   "env": {
     "production": {
-      "name": "crrs",
+      "name": "ais",
       "vars": {
         "ENVIRONMENT": "production",
         "DEMO_MODE": "true",
         "TRANSACTIONAL_EMAIL": "noreply@saas.com",
-        "BETTER_AUTH_URL": "https://crrs.devxo.workers.dev",
+        "BETTER_AUTH_URL": "https://ais.devxo.workers.dev",
         "AWS_SES_ENDPOINT": "https://email.us-east-1.amazonaws.com/v2/email/outbound-emails",
         "AWS_SES_REGION": "us-east-1"
       },
@@ -64,14 +64,14 @@
       "d1_databases": [
         {
           "binding": "D1",
-          "database_name": "crrs-d1-production",
-          "database_id": "2e3e1b77-b865-4b25-af2e-a2d6da921259" // crrs-d1-production
+          "database_name": "ais-d1-production",
+          "database_id": "2e3e1b77-b865-4b25-af2e-a2d6da921259" // ais-d1-production
         }
       ],
       "kv_namespaces": [
         {
           "binding": "KV",
-          "id": "7ab5e04f8036473d9266c214d48fdbc2" // crrs-kv-production
+          "id": "7ab5e04f8036473d9266c214d48fdbc2" // ais-kv-production
         }
       ],
       "ratelimits": [
