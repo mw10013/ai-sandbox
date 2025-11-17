@@ -13,18 +13,12 @@ import { invariant } from "@epic-web/invariant";
 import { useSubmit } from "react-router";
 import * as z from "zod";
 
-export function loader({ context }: Route.LoaderArgs) {
-  const requestContext = context.get(RequestContext);
-  invariant(requestContext, "Missing request context.");
-  const { env } = requestContext;
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  return { isDemoMode: env.DEMO_MODE === "true" };
-}
-
 export async function action({
   request,
   context,
-}: Route.ActionArgs): Promise<Oui.AlertExFormActionResult & { magicLink?: string }> {
+}: Route.ActionArgs): Promise<
+  Oui.AlertExFormActionResult & { magicLink?: string }
+> {
   const schema = z.object({
     email: z.email(),
   });
@@ -40,9 +34,19 @@ export async function action({
       validationErrors,
     } satisfies Oui.AlertExFormActionResult;
   }
+
   const requestContext = context.get(RequestContext);
   invariant(requestContext, "Missing request context.");
   const { authService: auth, env } = requestContext;
+  const emailWhitelist = env.EMAIL_WHITE_LIST
+    ? env.EMAIL_WHITE_LIST.split(",")
+    : [];
+  if (
+    emailWhitelist.length > 0 &&
+    !emailWhitelist.includes(parseResult.data.email)
+  ) {
+    return { success: true };
+  }
   const result = await auth.api.signInMagicLink({
     headers: request.headers,
     body: { email: parseResult.data.email, callbackURL: "/magic-link" },
@@ -60,10 +64,7 @@ export async function action({
   return { success: true, magicLink };
 }
 
-export default function RouteComponent({
-  loaderData: { isDemoMode },
-  actionData,
-}: Route.ComponentProps) {
+export default function RouteComponent({ actionData }: Route.ComponentProps) {
   const submit = useSubmit();
   if (actionData?.success) {
     return (
@@ -94,9 +95,7 @@ export default function RouteComponent({
         <CardHeader>
           <CardTitle>Sign in / Sign up</CardTitle>
           <CardDescription>
-            {isDemoMode
-              ? "DEMO MODE: no transactional emails. Use fake email or a@a.com for admin."
-              : "Enter your email to receive a magic sign-in link"}
+            Enter your email to receive a magic sign-in link
           </CardDescription>
         </CardHeader>
         <CardContent>
