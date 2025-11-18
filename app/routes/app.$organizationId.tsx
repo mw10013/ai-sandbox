@@ -92,24 +92,34 @@ export function AppSidebar({
   const items = [
     {
       id: "Organization Home",
-      href: `/app/${organization.id}`,
+      href: ReactRouter.href("/app/:organizationId", {
+        organizationId: organization.id,
+      }),
     },
     {
       id: "Chat",
-      href: `/app/${organization.id}/chat`,
+      href: ReactRouter.href("/app/:organizationId/chat", {
+        organizationId: organization.id,
+      }),
     },
     {
       id: "Members",
-      href: `/app/${organization.id}/members`,
+      href: ReactRouter.href("/app/:organizationId/members", {
+        organizationId: organization.id,
+      }),
     },
     {
       id: "Invitations",
-      href: `/app/${organization.id}/invitations`,
+      href: ReactRouter.href("/app/:organizationId/invitations", {
+        organizationId: organization.id,
+      }),
       "data-testid": "sidebar-invitations",
     },
     {
       id: "Billing",
-      href: `/app/${organization.id}/billing`,
+      href: ReactRouter.href("/app/:organizationId/billing", {
+        organizationId: organization.id,
+      }),
       "data-testid": "sidebar-billing",
     },
   ];
