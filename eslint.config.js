@@ -19,6 +19,7 @@ export default defineConfig(
     "components/ui/sidebar.tsx",
     "components/ui/toggle-group.tsx",
     "hooks/use-mobile.ts",
+    "components/ai-elements/",
   ]),
 
   eslint.configs.recommended,
