@@ -92,7 +92,7 @@ export default function RouteComponent({
         <span className="bg-primary absolute right-0 -bottom-[9px] h-5 w-px animate-pulse opacity-80" />
         <span className="bg-primary absolute -right-[9px] bottom-0 h-px w-5 animate-pulse opacity-80" />
         <div className="absolute inset-0 isolate -z-10 overflow-hidden">
-          <div className="absolute inset-y-0 left-1/2 w-[1200px] -translate-x-1/2 mask-[linear-gradient(black,transparent_320px),linear-gradient(90deg,transparent,black_5%,black_95%,transparent)] [mask-composite:intersect]">
+          <div className="absolute inset-y-0 left-1/2 w-[1200px] -translate-x-1/2 mask-[linear-gradient(black,transparent_320px),linear-gradient(90deg,transparent,black_5%,black_95%,transparent)] mask-intersect">
             <svg
               className="text-primary/10 pointer-events-none absolute inset-0"
               width="100%"
