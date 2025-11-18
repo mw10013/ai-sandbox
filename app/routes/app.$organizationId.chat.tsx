@@ -1,11 +1,24 @@
 "use client";
 
+import type { Route } from "./+types/app.$organizationId.chat";
 import { useState } from "react";
 import { useChat } from "@ai-sdk/react";
+import { invariant } from "@epic-web/invariant";
+import { DefaultChatTransport } from "ai";
+import * as ReactRouter from "react-router";
 
 export default function RouteComponent() {
   const [input, setInput] = useState("");
-  const { messages, sendMessage } = useChat();
+  const { organizationId } =
+    ReactRouter.useParams<Route.LoaderArgs["params"]>();
+  invariant(organizationId, "Missing organizationId");
+  const { messages, sendMessage } = useChat({
+    transport: new DefaultChatTransport({
+      api: ReactRouter.href("/app/:organizationId/chat/api", {
+        organizationId,
+      }),
+    }),
+  });
   return (
     <div className="stretch mx-auto flex w-full max-w-md flex-col py-24">
       {messages.map((message) => (
@@ -25,6 +38,7 @@ export default function RouteComponent() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          console.log("Submitting message:", input);
           void sendMessage({ text: input });
           setInput("");
         }}
