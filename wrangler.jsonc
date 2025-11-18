@@ -43,6 +43,9 @@
       }
     }
   ],
+  "ai": {
+    "binding": "AI"
+  },
   "env": {
     "production": {
       "name": "ais",
@@ -83,7 +86,10 @@
             "period": 60
           }
         }
-      ]
+      ],
+      "ai": {
+        "binding": "AI"
+      }
     }
   },
   "triggers": {

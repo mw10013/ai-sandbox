@@ -4,32 +4,14 @@ import { createRepository } from "@/lib/repository";
 import { RequestContext } from "@/lib/request-context";
 import { createSesService } from "@/lib/ses-service";
 import { createStripeService } from "@/lib/stripe-service";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { convertToModelMessages, streamText } from "ai";
+import { createAiGateway } from "ai-gateway-provider";
 import * as Hono from "hono";
 import * as ReactRouter from "react-router";
 import { createE2eRoutes } from "./e2e";
 
 const MAGIC_LINK_VERIFY_PATH = "/api/auth/magic-link/verify";
-
-/**
- * Rate limiting
- * @see https://github.com/better-auth/better-auth/blob/1881c33126ddd6385cc355dc6933133c3ce1d97f/packages/better-auth/src/plugins/magic-link/index.ts#L436-L447
- * 
- * @example
- * ```ts
- * rateLimit: [
-			{
-				pathMatcher(path) {
-					return (
-						path.startsWith("/sign-in/magic-link") ||
-						path.startsWith("/magic-link/verify")
-					);
-				},
-				window: opts.rateLimit?.window || 60,
-				max: opts.rateLimit?.max || 5,
-			},
-		],
- * ```
- */
 
 export default {
   async fetch(request, env, ctx) {
@@ -68,6 +50,25 @@ export default {
     hono.post("/api/auth/stripe/webhook", authHandler);
     hono.get("/api/auth/magic-link/verify", authHandler);
     hono.get("/api/auth/subscription/*", authHandler);
+
+    hono.post("/api/chat", async (c) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const { messages } = await c.req.json();
+      const aiGateway = createAiGateway({
+        binding: env.AI.gateway("saas-ai-gateway"),
+        options: { cacheTtl: 3600 },
+      });
+      const google = createGoogleGenerativeAI({
+        apiKey: env.GOOGLE_AI_STUDIO_API_KEY,
+      });
+      const model = aiGateway([google("gemini-2.5-flash")]);
+      const result = streamText({
+        model,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        messages: convertToModelMessages(messages),
+      });
+      return result.toUIMessageStreamResponse();
+    });
 
     if (env.ENVIRONMENT === "local") {
       hono.all(

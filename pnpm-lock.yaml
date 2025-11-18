@@ -42,7 +42,7 @@ importers:
         specifier: 5.0.93
         version: 5.0.93(zod@4.1.5)
       ai-gateway-provider:
-        specifier: ^2.0.1
+        specifier: 2.0.1
         version: 2.0.1(zod@4.1.5)
       aws4fetch:
         specifier: 1.0.20
