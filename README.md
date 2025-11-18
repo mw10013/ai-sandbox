@@ -133,6 +133,8 @@ pnpm test:e2e
 ```
 pnpm dlx shadcn@latest add --overwrite @oui/oui-index
 pnpm dlx shadcn@latest add --overwrite @oui/oui-react-router-index
+
+pnpm dlx shadcn@latest add --overwrite @ai-elements/all
 ```
 
 ## Credit
