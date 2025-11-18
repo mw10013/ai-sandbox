@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useChat } from "@ai-sdk/react";
 
-export default function Chat() {
+export default function RouteComponent() {
   const [input, setInput] = useState("");
   const { messages, sendMessage } = useChat();
   return (
