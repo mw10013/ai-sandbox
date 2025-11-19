@@ -22,5 +22,5 @@ export async function action({ request, context }: ActionFunctionArgs) {
     model,
     messages: Ai.convertToModelMessages(messages),
   });
-  return result.toUIMessageStreamResponse();
+  return result.toUIMessageStreamResponse({ sendReasoning: true });
 }
