@@ -54,7 +54,7 @@ export default function RouteComponent() {
   };
 
   return (
-    <div className="stretch mx-auto flex w-full max-w-md flex-col py-24">
+    <div className="mx-auto flex h-screen w-full max-w-md flex-col py-24">
       <Conversation className="h-full">
         <ConversationContent>
           {messages.map((message) => (
