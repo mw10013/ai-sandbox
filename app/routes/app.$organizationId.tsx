@@ -109,6 +109,12 @@ export function AppSidebar({
       }),
     },
     {
+      id: "Chat2",
+      href: ReactRouter.href("/app/:organizationId/chat2", {
+        organizationId: organization.id,
+      }),
+    },
+    {
       id: "Members",
       href: ReactRouter.href("/app/:organizationId/members", {
         organizationId: organization.id,
